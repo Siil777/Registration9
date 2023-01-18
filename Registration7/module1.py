@@ -28,6 +28,9 @@ def get_data(passw) -> tuple:
     of data listed by commas.
     """
     global users
+    """function clobal is writed 1 time and has impact on all function
+    in file
+    """
     logins = users.keys()
 
     users[login] = passw
