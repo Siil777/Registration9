@@ -16,6 +16,9 @@ for user in data:
     be inputed by user: alphabet or digit
     """
     name = user.split()[1]
+    """Thanking to readlines() [1] and [0]
+        Can write on what line password and name
+    """
     password = user.split()[0]
     users[name] = password
  
