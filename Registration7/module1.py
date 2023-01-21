@@ -1,7 +1,7 @@
 import sys
 
 with open('file.txt', 'r') as base:
-    """w+ open a file for readin and saving smhg
+    """w+ open a file for readin and saving smth
     """
     data = base.readlines()
     """ readlines () read each str of file 
