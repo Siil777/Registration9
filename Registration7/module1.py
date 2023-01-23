@@ -1,48 +1,41 @@
-import sys
-
-with open('file.txt', 'r') as base:
-    """w+ open a file for readin and saving smth
-    """
-    data = base.readlines()
-    """ readlines () read each str of file 
-    """
+import json
  
-users = {}
-"""users = {} list of users
-"""
-for user in data:
-    """data from readlines() is being tied with name and password
-    it lets us read each str which will
-    be inputed by user: alphabet or digit
-    """
-    name = user.split()[1]
-    """Thanking to readlines() [1] and [0]
-        Can write on what line password and name
-    """
-    password = user.split()[0]
-    users[name] = password
+def save_to_file(users):
+    with open('file.txt', 'w') as f:
+        for user,password in users.items():
+            f.write(f"{user} {password}\n")
  
+def load_from_file():
+    try:
+        with open('file.txt', 'r') as f:
+            data = f.read().split('\n')
+            users={}
+            for user in data:
+                if user:
+                    user,password=user.split()
+                    users[user]=password
+            return users
+    except:
+        return {}
  
-logins = users.keys()
+users = load_from_file()
  
+def login(username, password):
+    if username in users:
+        if users[username] == password:
+            print("Success: You are logged in.")
+            return True
+        else:
+            print("Error: Incorrect password.")
+            return False
+    else:
+        print("Error: Incorrect username.")
+        return False
  
-def get_data(passw) -> tuple:
-    """ tuple: also a list, but can consist different type
-    of data listed by commas.
-    """
-    global users
-    """function clobal is writed 1 time and has impact on all function
-    in file
-    """
-    logins = users.keys()
-
-    users[login] = passw
-  
- 
-    return (login, passw)
- 
- 
-def add_user(passw):
-    data: tuple = get_data()
-    with open('file.txt', 'r+') as base:
-        base.write(data[0] + " " + data[1] + '\n')
+def register_user(username, password):
+    if username in users:
+        print("Error: That username is already taken.")
+        return
+    else:
+        users[username] = password
+        print("Success: User registered.")
