@@ -3,7 +3,7 @@ from module1 import*
 import sys
 import string
 from re import*
-from module1 import get_data
+
 
 from JsonX import*
 
