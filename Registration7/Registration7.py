@@ -5,30 +5,22 @@ import string
 from re import*
 from module1 import get_data
 
+from JsonX import*
+
 while True:
-        print("Write 1 for reg, 2 for login, or 0 for exit")
-        cmd = input()
-        if cmd == '1':
-            add_user=()
-        elif cmd=='2':
-            add_user=()
-        elif cmd == '0': 
-            sys.exit()
-        else: print("Wrong command")
-
-        while True:
-                login = input("Enter login: ")
-                passw = input("Enter password: ")
-                if login not in logins and cmd=='1':
-
-                    print("Success.")
-                    break
-                if login in logins and cmd=='2':
-                    print('you logened')
-                    
-                    break
-                if login not in logins and cmd=='2':
-                    print('you ought to register for start')
-                    break
-                else: print("There is a user with this username. Try again with other username.")
-                break
+    command = input("Enter 1 to register, 2 to login, 0 to exit: ")
+    if command == "1":
+        username = input("Enter a username: ")
+        password = input("Enter a password: ")
+        register_user(username, password)
+        save_to_file(users)
+    elif command == "2":
+        username = input("Enter your username: ")
+        password = input("Enter your password: ")
+        if login(username, password):
+            break
+    elif command == "0":
+        save_to_file(users)
+        break
+    else:
+        print("Invalid command.")
